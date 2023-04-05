@@ -1,0 +1,10 @@
+ModelEditArrow、ModelEditCircle是自己写的类
+可以不必理会
+可以这样使用，但是功能不全，只能画出来
+import ModelEditArrow from "../js/ModelEdit/ModelEditArrow.js"
+import ModelEditCircle from "../js/ModelEdit/ModelEditCircle.js"
+    editArrow = new ModelEditArrow(viewer,palaceTileset)
+    editArrow.updateLineArrow()
+    //画旋转坐标系
+    editCircle = new ModelEditCircle(viewer,palaceTileset)
+    editArrow.addDiagPoint()
