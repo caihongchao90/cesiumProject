@@ -57,16 +57,21 @@ export default class PointCluster1 {
 
 
   remove() {
-    if (!this.geoJsonDataSource){
-      throw new Error('点未创建完成，不可以删除');
-      return;
-    }
-    if (this.DataLoadedEvent._listeners.length !=0){
-      this.DataLoadedEvent._listeners.map(value => {
-        this.DataLoadedEvent.removeEventListener(value);
-      })
-    }
-    this.viewer.dataSources.remove(this.geoJsonDataSource)
+
+    let that = this
+    let i = setInterval(()=>{
+      if (that.geoJsonDataSource){
+        that.viewer.dataSources.remove(that.geoJsonDataSource)
+        clearTimeout(i);
+        console.log("清除")
+      }
+      if (that.DataLoadedEvent._listeners.length !=0){
+        that.DataLoadedEvent._listeners.map(value => {
+          that.DataLoadedEvent.removeEventListener(value);
+        })
+      }
+    },1)
+
 
   }
 }
