@@ -44,7 +44,7 @@ tileset.readyPromise.then(currentModel=>{
   clip3dtiles.clipping(currentModel,polygon,true)
 })
 ```
-### 另外判断凹凸多边形方法
+### 判断凹凸多边形方法
 ```javascript
 //--------------判断是否是凸多边形函数-------------------------
 // p：顶点数组(数组对象) n：顶点个数；1：凸集；-1：凹集；0：曲线不符合要求无法计算
