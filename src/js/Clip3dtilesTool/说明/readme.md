@@ -44,3 +44,61 @@ tileset.readyPromise.then(currentModel=>{
   clip3dtiles.clipping(currentModel,polygon,true)
 })
 ```
+### 另外判断凹凸多边形方法
+```javascript
+//--------------判断是否是凸多边形函数-------------------------
+// p：顶点数组(数组对象) n：顶点个数；1：凸集；-1：凹集；0：曲线不符合要求无法计算
+convex(p,n) {
+  var j,k,z;
+  var flag = 0;
+  if (n<3){
+    console.log("不符合要求")
+    return 0;
+  }
+  for (var i=0;i<n;i++) {
+    j = (i + 1) % n;
+    k = (i + 2) % n;
+    z = (p[j][0] - p[i][0]) * (p[k][1] - p[j][1]);
+    z -= (p[j][1] - p[i][1]) * (p[k][0] - p[j][0]);
+    if (z < 0){
+      flag |= 1;
+    } else if (z > 0){
+      flag |=  2;
+    }
+    if (flag == 3){
+      console.log("凹多边形，不符合要求")
+      return -1; //CONCAVE
+    }
+  }
+  if (flag != 0){
+    console.log("凸多边形")
+    return 1; //CONVEX
+  } else{
+    return 0;
+  }
+}
+//使用示例
+let polygon = [
+  [
+    120.93770294839021,
+    30.944409113550464
+  ],
+  [
+    120.94412391411574,
+    30.945469698162704
+  ],
+  [
+    120.94425679285655,
+    30.943722096232364
+  ],
+  [
+    120.94410889332894,
+    30.937019975123036
+  ],
+  [
+    120.94347175150074,
+    30.932161592194745
+  ]
+]
+convex(polygon,polygon.length)
+```
